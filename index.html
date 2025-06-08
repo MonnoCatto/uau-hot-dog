@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio Uau! Hot Dog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #DC143C 0%, #FFD700 50%, #DC143C 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .menu-container {
+            max-width: 794px;
+            min-height: 1123px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .menu-container {
+                max-width: 100%;
+                min-height: auto;
+                margin: 10px;
+                border-radius: 15px;
+            }
+        }
+
+        .header {
+            background: linear-gradient(45deg, #DC143C, #FF6B6B);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 30px 20px;
+            }
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .logo {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 32px;
+            }
+        }
+
+        .tagline {
+            font-size: 18px;
+            font-weight: 600;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .menu-content {
+            padding: 40px 30px 60px 30px;
+            height: calc(100% - 180px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (max-width: 768px) {
+            .menu-content {
+                padding: 30px 20px 40px 20px;
+                height: auto;
+            }
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #DC143C;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 24px;
+            }
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #DC143C, #FFD700);
+            border-radius: 2px;
+        }
+
+        .hot-dogs {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .hot-dog-item {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            padding: 20px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 20px rgba(255,215,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .hot-dog-item {
+                padding: 15px;
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hot-dog-item {
+                flex-direction: row;
+                text-align: left;
+                gap: 0;
+            }
+        }
+
+        .hot-dog-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .hot-dog-item:hover::before {
+            left: 100%;
+        }
+
+        .hot-dog-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(255,215,0,0.4);
+        }
+
+        .hot-dog-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: #8B0000;
+        }
+
+        @media (max-width: 768px) {
+            .hot-dog-name {
+                font-size: 20px;
+            }
+        }
+
+        .hot-dog-price {
+            font-size: 24px;
+            font-weight: 800;
+            color: #8B0000;
+            background: white;
+            padding: 8px 15px;
+            border-radius: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .extras-drinks {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            flex-grow: 1;
+        }
+
+        @media (max-width: 768px) {
+            .extras-drinks {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                flex-grow: unset;
+            }
+        }
+
+        .extras, .drinks {
+            background: #FFF8DC;
+            padding: 25px;
+            border-radius: 15px;
+            border: 3px solid #FFD700;
+        }
+
+        @media (max-width: 768px) {
+            .extras, .drinks {
+                padding: 20px;
+            }
+        }
+
+        .extras h3, .drinks h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #DC143C;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .item-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px dashed #FFD700;
+        }
+
+        .item:last-child {
+            border-bottom: none;
+        }
+
+        .item-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .item-price {
+            font-size: 16px;
+            font-weight: 700;
+            color: #DC143C;
+            background: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .decorative-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,215,0,0.1), transparent);
+        }
+
+        .circle1 {
+            width: 100px;
+            height: 100px;
+            top: 200px;
+            right: -30px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .circle2 {
+            width: 60px;
+            height: 60px;
+            bottom: 300px;
+            left: -20px;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .menu-container {
+                box-shadow: none;
+                border-radius: 0;
+                height: auto;
+                min-height: 100vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-container">
+        <div class="decorative-elements">
+            <div class="circle circle1"></div>
+            <div class="circle circle2"></div>
+        </div>
+        
+        <div class="header">
+            <div class="logo">🌭 Uau! Hot Dog</div>
+            <div class="tagline">Sabor que surpreende a cada mordida!</div>
+        </div>
+
+        <div class="menu-content">
+            <div class="section">
+                <h2 class="section-title">🔥 NOSSOS HOT DOGS</h2>
+                <div class="hot-dogs">
+                    <div class="hot-dog-item">
+                        <div class="hot-dog-name">Simples</div>
+                        <div class="hot-dog-price">R$ 14,00</div>
+                    </div>
+                    <div class="hot-dog-item">
+                        <div class="hot-dog-name">Duplo</div>
+                        <div class="hot-dog-price">R$ 15,00</div>
+                    </div>
+                    <div class="hot-dog-item">
+                        <div class="hot-dog-name">Uau!</div>
+                        <div class="hot-dog-price">R$ 20,00</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="extras-drinks">
+                <div class="extras">
+                    <h3>🥓 ADICIONAIS</h3>
+                    <div class="item-list">
+                        <div class="item">
+                            <span class="item-name">Bacon</span>
+                            <span class="item-price">R$ 3,00</span>
+                        </div>
+                        <div class="item">
+                            <span class="item-name">Frango</span>
+                            <span class="item-price">R$ 3,00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="drinks">
+                    <h3>🥤 BEBIDAS</h3>
+                    <div class="item-list">
+                        <div class="item">
+                            <span class="item-name">Coca-Cola Lata</span>
+                            <span class="item-price">R$ 6,00</span>
+                        </div>
+                        <div class="item">
+                            <span class="item-name">Coca-Cola Zero Lata</span>
+                            <span class="item-price">R$ 6,00</span>
+                        </div>
+                        <div class="item">
+                            <span class="item-name">Guaraná Lata</span>
+                            <span class="item-price">R$ 5,00</span>
+                        </div>
+                        <div class="item">
+                            <span class="item-name">Fanta 600mL</span>
+                            <span class="item-price">R$ 9,00</span>
+                        </div>
+                        <div class="item">
+                            <span class="item-name">Sprite 600mL</span>
+                            <span class="item-price">R$ 9,00</span>
+                        </div>
+                        <div class="item">
+                            <span class="item-name">Laranjinha 1L</span>
+                            <span class="item-price">R$ 10,00</span>
+                        </div>
+                        <div class="item">
+                            <span class="item-name">Guaraná 1L</span>
+                            <span class="item-price">R$ 9,00</span>
+                        </div>
+                        <div class="item">
+                            <span class="item-name">Água Mineral</span>
+                            <span class="item-price">R$ 2,00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
