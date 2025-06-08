@@ -21,13 +21,23 @@
 
         .menu-container {
             max-width: 794px;
-            height: 1123px;
+            min-height: 1123px;
             margin: 0 auto;
             background: white;
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             overflow: hidden;
             position: relative;
+            padding-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .menu-container {
+                max-width: 100%;
+                min-height: auto;
+                margin: 10px;
+                border-radius: 15px;
+            }
         }
 
         .header {
@@ -37,6 +47,12 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 30px 20px;
+            }
         }
 
         .header::before {
@@ -64,6 +80,18 @@
             z-index: 1;
         }
 
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 32px;
+            }
+        }
+
         .tagline {
             font-size: 18px;
             font-weight: 600;
@@ -73,10 +101,17 @@
         }
 
         .menu-content {
-            padding: 40px 30px;
+            padding: 40px 30px 60px 30px;
             height: calc(100% - 180px);
             display: flex;
             flex-direction: column;
+        }
+
+        @media (max-width: 768px) {
+            .menu-content {
+                padding: 30px 20px 40px 20px;
+                height: auto;
+            }
         }
 
         .section {
@@ -91,6 +126,12 @@
             text-align: center;
             position: relative;
             padding-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 24px;
+            }
         }
 
         .section-title::after {
@@ -124,6 +165,23 @@
             overflow: hidden;
         }
 
+        @media (max-width: 768px) {
+            .hot-dog-item {
+                padding: 15px;
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hot-dog-item {
+                flex-direction: row;
+                text-align: left;
+                gap: 0;
+            }
+        }
+
         .hot-dog-item::before {
             content: '';
             position: absolute;
@@ -150,6 +208,12 @@
             color: #8B0000;
         }
 
+        @media (max-width: 768px) {
+            .hot-dog-name {
+                font-size: 20px;
+            }
+        }
+
         .hot-dog-price {
             font-size: 24px;
             font-weight: 800;
@@ -167,11 +231,25 @@
             flex-grow: 1;
         }
 
+        @media (max-width: 768px) {
+            .extras-drinks {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                flex-grow: unset;
+            }
+        }
+
         .extras, .drinks {
             background: #FFF8DC;
             padding: 25px;
             border-radius: 15px;
             border: 3px solid #FFD700;
+        }
+
+        @media (max-width: 768px) {
+            .extras, .drinks {
+                padding: 20px;
+            }
         }
 
         .extras h3, .drinks h3 {
